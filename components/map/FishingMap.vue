@@ -9,15 +9,13 @@
       </div>
     </div>
 
-    <!-- Map -->
+    <!-- Map (client-only: Leaflet requires browser APIs) -->
     <ClientOnly>
       <LMap
-        ref="map"
         :zoom="zoom"
         :center="center"
         :options="mapOptions"
         style="height: calc(100vh - 64px); width: 100%;"
-        @ready="onMapReady"
       >
         <LTileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -37,7 +35,7 @@
       </template>
     </ClientOnly>
 
-    <!-- Mobile legend (bottom) -->
+    <!-- Mobile legend -->
     <div class="sm:hidden absolute bottom-4 left-4 z-40 bg-white rounded-xl shadow-lg p-3 text-xs">
       <div class="flex items-center gap-2 mb-1.5">
         <span class="w-3 h-3 rounded-full bg-blue-500 flex-shrink-0"></span>
@@ -52,6 +50,7 @@
 </template>
 
 <script setup lang="ts">
+import { LMap, LTileLayer } from '@vue-leaflet/vue-leaflet'
 import type { FishingSpot } from '~/types/fishing'
 
 const { spots, loading, loadSpots } = useFirestore()
@@ -59,18 +58,9 @@ const { select } = useSelectedSpot()
 
 const zoom = ref(7)
 const center = ref<[number, number]>([29.1, -111.0])
-const mapOptions = {
-  zoomControl: true,
-  scrollWheelZoom: true
-}
+const mapOptions = { zoomControl: true, scrollWheelZoom: true }
 
-onMounted(() => {
-  loadSpots()
-})
+onMounted(() => { loadSpots() })
 
-const onMapReady = () => {}
-
-const handleSpotSelect = (spot: FishingSpot) => {
-  select(spot)
-}
+const handleSpotSelect = (spot: FishingSpot) => { select(spot) }
 </script>
