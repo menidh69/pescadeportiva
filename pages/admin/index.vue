@@ -18,6 +18,10 @@
       Cargando lugares...
     </div>
 
+    <div v-else-if="error" class="bg-red-50 border border-red-200 rounded-xl p-4 text-red-700 text-sm">
+      Error al cargar: {{ error }}
+    </div>
+
     <div v-else-if="spots.length === 0" class="text-center py-12 text-gray-500">
       No hay lugares registrados.
     </div>
@@ -75,7 +79,7 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'admin', middleware: 'auth' })
 
-const { spots, loading, fetchAllSpots } = useAdminSpots()
+const { spots, loading, error, fetchAllSpots } = useAdminSpots()
 
 const sortedSpots = computed(() =>
   [...spots.value].sort((a, b) => a.name.localeCompare(b.name))
