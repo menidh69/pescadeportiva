@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ensure full height */
+html,
+body,
+#__nuxt {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Leaflet z-index fixes */
+.leaflet-pane {
+  z-index: 10;
+}
+.leaflet-control {
+  z-index: 20;
+}
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 20;
+}
+
+/* Custom tooltip style */
+.leaflet-tooltip {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 6px 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.leaflet-tooltip::before {
+  border-top-color: #e5e7eb;
+}
