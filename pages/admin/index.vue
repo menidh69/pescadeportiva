@@ -82,7 +82,7 @@ definePageMeta({ layout: 'admin', middleware: 'auth' })
 const { spots, loading, error, fetchAllSpots } = useAdminSpots()
 
 const sortedSpots = computed(() =>
-  [...spots.value].sort((a, b) => a.name.localeCompare(b.name))
+  [...spots.value].sort((a, b) => (a.name ?? '').localeCompare(b.name ?? ''))
 )
 
 onMounted(fetchAllSpots)
