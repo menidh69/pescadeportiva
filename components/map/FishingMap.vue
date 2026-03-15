@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full h-full">
+  <div class="relative w-full" style="height: calc(100vh - 64px);">
     <!-- Loading overlay -->
     <div v-if="loading" class="absolute inset-0 bg-white bg-opacity-80 z-50 flex items-center justify-center">
       <div class="text-center">
@@ -16,7 +16,7 @@
         :zoom="zoom"
         :center="center"
         :options="mapOptions"
-        style="height: 100%; width: 100%;"
+        style="height: calc(100vh - 64px); width: 100%;"
         @ready="onMapReady"
       >
         <LTileLayer
@@ -31,7 +31,7 @@
         />
       </LMap>
       <template #fallback>
-        <div class="flex items-center justify-center h-full bg-blue-50">
+        <div class="flex items-center justify-center bg-blue-50" style="height: calc(100vh - 64px);">
           <p class="text-blue-600">Cargando mapa...</p>
         </div>
       </template>
@@ -68,9 +68,7 @@ onMounted(() => {
   loadSpots()
 })
 
-const onMapReady = () => {
-  // Map is ready
-}
+const onMapReady = () => {}
 
 const handleSpotSelect = (spot: FishingSpot) => {
   select(spot)

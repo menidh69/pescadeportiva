@@ -2,11 +2,14 @@
   "name": "pescadeportiva",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
+    "build": "bash -c 'source ~/.nvm/nvm.sh && nvm use && npx nuxt build'",
+    "dev": "bash -c 'source ~/.nvm/nvm.sh && nvm use && npx nuxt dev'",
+    "generate": "bash -c 'source ~/.nvm/nvm.sh && nvm use && npx nuxt generate'",
+    "preview": "bash -c 'source ~/.nvm/nvm.sh && nvm use && npx nuxt preview'",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
